@@ -1,0 +1,552 @@
+<header>
+    <div class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-6 logo2 menutop">
+                    <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false"
+                        (click)="fnOnClickMenuToggle()"
+                        >
+                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a routerLink="/">
+                        <img src="assets/images/logo.jpg"
+                            alt="logo">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <nav class="navbar menu1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="javascript:void(0);"
+                                    (click)='commonFunctions.fnRedirectToOffers()'
+                                    class="active">Sales/Offers</a></li>
+                            <li><a href="javascript:void(0);"
+                                    (click)='commonFunctions.fnRedirectToBlog()'>Blog</a></li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                    class='tooltip-a isDisabled'
+                                    placement="bottom"
+                                    ngbTooltip="{{commingUpToolTipText}}"
+                                    (click)='commonFunctions.redirectToUpcommingPage()'
+                                    >
+                                    Post a Sale</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 search-top">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text"
+                                class="  search-query form-control"
+                                placeholder="Search" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger"
+                                    type="button"> <span class=" glyphicon glyphicon-search"></span> </button>
+                            </span> </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 cl-xs-12 rtl-menu">
+                    <ul>
+                        <!-- <li>
+                            <a href="#">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart
+                            </a>
+                        </li> -->
+                        <li>
+                            <a href="javascript:void(0);"
+                                class='tooltip-a isDisabled'
+                                data-toggle="modal"
+                                data-target="#modallogin"
+                                placement="bottom"
+                                ngbTooltip="{{commingUpToolTipText}}"
+                                (click)='commonFunctions.redirectToUpcommingPage()'>
+                                
+                                <i class="fa fa-lock"
+                                    aria-hidden="true">
+                                </i>Login
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"
+                                class="tooltip-a isDisabled"
+                                data-toggle="modal"
+                                data-target="#modaljoin"
+                                placement="bottom"
+                                ngbTooltip="{{commingUpToolTipText}}"
+                                (click)='commonFunctions.redirectToUpcommingPage()'
+                                >
+                                <i class="fa fa-user"
+                                    aria-hidden="true"></i>Sign Up
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <nav class="navbar navbar-default menu">
+        <div class="container">
+            <div class="collapse navbar-collapse"
+            [ngClass]="isInToggle ? 'in' : ''"
+                id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <li *ngFor='let category of categories'>
+                        <a href="javascript:void(0);"
+                            (click)='fnLoadCategoryData(category)'>{{category.CategoryName}}</a>
+                    </li>
+                    <li><a class="red-text"  href="javascript:void(0);" 
+                        (click)='commonFunctions.fnRedirectToOffers()'>Offers</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container"
+    *ngIf='sliderImages && sliderImages.length > 0'>
+    <div class="banner-slider">
+        <div class="hdr_img">
+            <ul class="rslides">
+                <owl-carousel [options]="{items: 1, dots: true, navigation: true}"
+                    [items]="sliderImages"
+                    [carouselClasses]="['owl-theme',  'sliding']">
+                    <div class="item "
+                        *ngFor="let slider of sliderImages;let i = index"
+                        title='{{slider.Title}}'
+                        [ngStyle]="{'background-color':slider.BgColor}"
+                        >
+                        <div class="image-content">    
+                        <!-- {{slider.BgColor}} -->
+                            <span style="color: #A60E8A">
+                                <h2 class="title">{{slider.Title}}</h2>
+                            </span>
+                            <span style="color: #A60E8A">
+                                <h3 class="discription">{{slider.Description}}</h3>
+                            </span>
+                            <span style="color: #A60E8A">
+                                <a class="btn-view" href="{{slider.CallToActionLink}}" style="color: #A60E8A"
+                                    target="_blank">{{slider.CallToActionText}}  <i class="fa fa-arrow-right"></i></a>
+                            </span>
+                        </div>
+                        <div class="product-image">
+                            <img src="{{slider.Img}}"
+                                alt="{{slider.Description}}"
+                                class="img-responsive"
+                                style="width: auto;" />
+                        </div>
+                    </div>
+                </owl-carousel>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="home_content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="home-tab">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs"
+                        role="tablist"
+                        style="background: #fff;">
+                        <li role="presentation"
+                            [ngClass]="{'active': selectedTab == 'todaysPicks' }">
+                            <a href="javascript:void(0);"
+                                (click)='selectedTab = "todaysPicks"'>Today's Picks</a>
+                        </li>
+                        <li role="presentation"
+                            [ngClass]="{'active': selectedTab == 'featuredProducts' }">
+                            <a href="javascript:void(0);"
+                                (click)='selectedTab = "featuredProducts"'>Featured Sale</a>
+                        </li>
+                        <li role="presentation"
+                            [ngClass]="{'active': selectedTab == 'recentProducts' }">
+                            <a href="javascript:void(0);"
+                                (click)='selectedTab = "recentProducts"'>Most Recent</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+
+                        <div role="tabpanel"
+                            class="tab-pane"
+                            [ngClass]="{'active': selectedTab == 'todaysPicks' }"
+                            id="todaysPicks">
+                            <app-product [listingType]="listingTypeTP"
+                                [blogPosts]="blogPosts"></app-product>
+                        </div>
+
+                        <div role="tabpanel"
+                            class="tab-pane"
+                            [ngClass]="{'active': selectedTab == 'featuredProducts' }"
+                            id="featuredProducts">
+                            <app-product [listingType]="listingTypeFP"
+                                [blogPosts]="blogPosts"></app-product>
+                        </div>
+
+                        <div role="tabpanel"
+                            class="tab-pane"
+                            [ngClass]="{'active': selectedTab == 'recentProducts' }"
+                            id="recentProducts">
+                            <app-product [listingType]="listingTypeRP"
+                                [blogPosts]="blogPosts"></app-product>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="side_home">
+                    <!-- <div class="amazon_right"> <a href="amazon.html">
+                            <div class="amazon_hd">Amazon Top Discount</div>
+                        </a>
+                        <h3>You could be missing out on massive discounts on Amazon</h3>
+                        <h2>View all discounts over 50%
+                            on Amazon</h2>
+                        <p>Updated every hour</p>
+                    </div> -->
+                    <div class="curent_off">
+                        <ng-template [ngIf]="offers && offers.length > 0">
+                            <app-sidebar-offers [offers]='offers'></app-sidebar-offers>
+                        </ng-template>
+
+                        <div class="view_offer"> <a href="{{oldWebsiteURL + 'Offers/Index?id='}}">VIEW ALL OFFERS</a>
+                        </div>
+                        <ng-template [ngIf]='banners && banners.length > 0'>
+                            <div class="curnt_box4"
+                                *ngFor="let banner of banners;let i = index">
+                                <h4> <br />{{banner.Title}} </h4>
+                                <a href="{{banner.Link}}"> <img src="{{banner.Image}}"
+                                        alt=" "
+                                        class="img-responsive">
+                                </a>
+                                <br />
+                                <ng-template [ngIf]="banner.Description">
+                                    {{banner.Description}}
+                                </ng-template>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="f-col">
+                    <h1>Information</h1>
+                    <ul>
+                        <li><a href="javascript:void(0);"
+                                (click)='commonFunctions.fnRedirectToOldWebsiteUrl("/Docs/About")'><i
+                                    class="fa fa-angle-right"
+                                    aria-hidden="true"></i>About Us</a></li>
+                        <li><a href="javascript:void(0);"
+                                (click)='commonFunctions.fnRedirectToOldWebsiteUrl("/Docs/Privacy")'><i
+                                    class="fa fa-angle-right"
+                                    aria-hidden="true"></i>Privacy Policy</a></li>
+                        <li><a href="javascript:void(0);"
+                                (click)='commonFunctions.fnRedirectToOldWebsiteUrl("/Docs/Terms")'><i
+                                    class="fa fa-angle-right"
+                                    aria-hidden="true"></i>Terms &amp; Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="f-col">
+                    <h1>Customer Service</h1>
+                    <ul>
+                        <li><a href="javascript:void(0);"
+                                (click)='commonFunctions.fnRedirectToOldWebsiteUrl("/Docs/Listing")'><i
+                                    class="fa fa-angle-right"
+                                    aria-hidden="true"></i> Listing your Products</a></li>
+                        <li><a href="javascript:void(0);"
+                                (click)='commonFunctions.fnRedirectToOldWebsiteUrl("/Docs/Advertise")'><i
+                                    class="fa fa-angle-right"
+                                    aria-hidden="true"></i> Advertise With Us</a></li>
+                        <li><a href="javascript:void(0);"
+                                (click)='commonFunctions.fnRedirectToOldWebsiteUrl("/Docs/Help")'><i
+                                    class="fa fa-angle-right"
+                                    aria-hidden="true"></i> Help &amp; Contact</a></li>
+                    </ul>
+                </div>
+
+
+
+                <div class="f-col">
+                    <h1>FIND US ON SOCIAL MEDIA</h1>
+                    <div class="ft_social"> <a href="https://www.facebook.com/SalescacheDeals/"
+                            target="_blank"
+                            rel="noopener"><i class="fa fa-facebook"
+                                aria-hidden="true"></i></a> <a href="https://twitter.com/Salescache"
+                            target="_blank"
+                            rel="noopener"><i class="fa fa-twitter"
+                                aria-hidden="true"></i></a> <a href="https://plus.google.com/u/0/117119930904615710939"
+                            target="_blank"
+                            rel="noopener"><i class="fa fa-google-plus"
+                                aria-hidden="true"></i></a> </div>
+                </div>*
+
+
+            </div>
+            <div class="col-md-5 col-sm-6">
+                <div class="what-do-des">
+                    <h1>Here is what we do for you</h1>
+                    <p>
+                        We look around for sales and <a href="javascript:void(0);"
+                            (click)='commonFunctions.fnRedirectToOffers()'>discount offers</a> from different stores and
+                        post them on our website.
+                    </p>
+                    <br>
+                    <p>We sort the products into categories and employ a powerful search tool that makes it easy for you
+                        to find the discounted product you want.</p>
+                    <br>
+                    <p>In addition, our <a href="javascript:void(0);"
+                            (click)='commonFunctions.fnRedirectToBlog()'>blog</a> gives you some buying advice and more.
+                    </p>
+                    <br>
+                    <p>
+                        Every day, our staff pick some top deals and we can send them to your inbox.
+                    </p>
+                </div>
+
+                <div class="f-newsletter">
+                    <form
+                        action="https://Salescache.us12.list-manage.com/subscribe/post?u=6a6db0bf9bb1baf4fe06cc521&amp;id=7be353519d"
+                        method="post"
+                        id="mc-embedded-subscribe-form"
+                        name="mc-embedded-subscribe-form"
+                        class="validate"
+                        target="_blank"
+                        novalidate="">
+                        <div id="mc_embed_signup_scroll">
+                            <input type="email"
+                                value=""
+                                name="EMAIL"
+                                class="form-control required email"
+                                id="mce-EMAIL"
+                                placeholder="Email Address">
+                            <input type="submit"
+                                value="Subscribe"
+                                name="subscribe"
+                                id="mc-embedded-subscribe"
+                                class="btn btn-submit">
+                        </div>
+                        <div id="mce-responses"
+                            class="clear">
+                            <div class="response"
+                                id="mce-error-response"
+                                style="display:none"></div>
+                            <div class="response"
+                                id="mce-success-response"
+                                style="display:none"></div>
+                        </div>
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;"
+                            aria-hidden="true"><input type="text"
+                                name="b_6a6db0bf9bb1baf4fe06cc521_7be353519d"
+                                tabindex="-1"
+                                value=""></div>
+                    </form>
+                </div>
+
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 fb-plug">
+                <div>
+                    <h1><a href="https://www.facebook.com/SalescacheDeals/">Facebook</a></h1>
+                    <script>
+                        $(document).ready(function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'))
+                    </script>
+                    <div class="like_box">
+                        <div class="fb-like-box fb_iframe_widget"
+                            data-href="https://www.facebook.com/SalescacheDeals/"
+                            data-colorscheme="light"
+                            data-show-faces="true"
+                            data-header="true"
+                            data-stream="false"
+                            data-show-border="true"
+                            fb-xfbml-state="rendered"
+                            fb-iframe-plugin-query="app_id=&amp;color_scheme=light&amp;container_width=0&amp;header=true&amp;href=https%3A%2F%2Fwww.facebook.com%2FSalescacheDeals%2F&amp;locale=en_US&amp;sdk=joey&amp;show_border=true&amp;show_faces=true&amp;stream=false">
+                            <span style="vertical-align: bottom; width: 0px; height: 0px;"><iframe name="fb17a314b2e314"
+                                    width="1000px"
+                                    height="1000px"
+                                    title="fb:like_box Facebook Social Plugin"
+                                    frameborder="0"
+                                    allowtransparency="true"
+                                    allowfullscreen="true"
+                                    scrolling="no"
+                                    allow="encrypted-media"
+                                    src="https://www.facebook.com/plugins/like_box.php?app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D44%23cb%3Df23741cf543ec74%26domain%3Dsalescache.co.uk%26origin%3Dhttps%253A%252F%252Fsalescache.co.uk%252Ff3da6baa7621898%26relation%3Dparent.parent&amp;color_scheme=light&amp;container_width=0&amp;header=true&amp;href=https%3A%2F%2Fwww.facebook.com%2FSalescacheDeals%2F&amp;locale=en_US&amp;sdk=joey&amp;show_border=true&amp;show_faces=true&amp;stream=false"
+                                    style="border: none; visibility: visible; width: 0px; height: 0px;"
+                                    class=""></iframe></span></div>
+                    </div>
+                    <div class="col_1_of_f_2 span_1_of_f_2">
+
+                        <div>
+                            <!--<h3 class="span_h3">Twitter</h3>-->
+                            <div class="clear"></div>
+                            <iframe id="twitter-widget-0"
+                                scrolling="no"
+                                frameborder="0"
+                                allowtransparency="true"
+                                class="twitter-follow-button twitter-follow-button-rendered"
+                                style="position: static; visibility: visible; width: 161px; height: 28px;"
+                                title="Twitter Follow Button"
+                                src="https://platform.twitter.com/widgets/follow_button.0639d67d95b7680840758b6833f06d87.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=salescache&amp;show_count=false&amp;show_screen_name=true&amp;size=l&amp;time=1565073951468"
+                                data-screen-name="salescache"></iframe>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="remember">
+                            <div class="g-follow"
+                                data-annotation="none"
+                                data-height="24"
+                                data-href="//plus.google.com/u/0/116065842016469679020"
+                                data-rel="publisher"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="copy_ryt"> © 2013-{{CurrentYear}} Salescache. All rights reserved. </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Login Start -->
+<div class="modal tc-modal fade"
+    id="modallogin">
+    <div class="modal-dialog loginmodal">
+        <div class="modal-content modal-padding">
+            <div class="modal-header"> <i class="fa fa-close close"
+                    data-dismiss="modal"></i>
+                <h4 class="modal-title">Login</h4>
+                <a href="#"
+                    data-toggle="modal"
+                    data-target="#modalforgot"
+                    data-dismiss="modal"
+                    class="forgot-text">Forgot Password?</a>
+            </div>
+            <form class="tc-form-style2">
+                <div class="form-field">
+                    <input type="email"
+                        placeholder="Email"
+                        required>
+                </div>
+                <div class="form-field">
+                    <input type="password"
+                        placeholder="Password"
+                        required>
+                </div>
+                <div class="form-button">
+                    <button type="submit"
+                        class="btn-log">Login IN</button>
+                </div>
+                <div class="button-social">
+                    <button type="submit"
+                        class="btn-google btn"><i class="fa fa-google"
+                            aria-hidden="true"></i>Sign in
+                        with Google</button>
+                </div>
+                <div class="log-footer">
+                    <p>Don’t have an account? <a href="create-account.html">Create Account</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal Login End -->
+
+<!-- Modal Forgot Password Start -->
+<div class="modal tc-modal fade"
+    id="modalforgot">
+    <div class="modal-dialog loginmodal">
+        <div class="modal-content modal-padding">
+            <div class="modal-header"> <i class="fa fa-close close"
+                    data-dismiss="modal"></i>
+                <h4 class="modal-title">Forgot Password</h4>
+            </div>
+            <form class="tc-form-style2">
+                <p>Type in your email below and we will send you a link allowing you to reset your password.</p>
+                <div class="form-field">
+                    <input type="email"
+                        placeholder="Email"
+                        required>
+                </div>
+                <div class="form-button">
+                    <button type="submit"
+                        class="btn-log">Continue</button>
+                </div>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal Forgot Password End -->
+
+<!-- Modal Join Start -->
+<div class="modal tc-modal fade"
+    id="modaljoin">
+    <div class="modal-dialog loginmodal">
+        <div class="modal-content modal-padding">
+            <div class="modal-header"> <i class="fa fa-close close"
+                    data-dismiss="modal"></i>
+                <h4 class="modal-title">Join Us</h4>
+            </div>
+            <form class="tc-form-style2">
+                <div class="form-field">
+                    <input type="email"
+                        placeholder="Email"
+                        required>
+                </div>
+                <div class="form-field">
+                    <input type="password"
+                        placeholder="Password"
+                        required>
+                </div>
+                <div class="form-field">
+                    <input type="password"
+                        placeholder="Confirm Password"
+                        required>
+                </div>
+                <div class="form-button">
+                    <button type="submit"
+                        class="btn-log">Join Us</button>
+                </div>
+                <div class="button-social">
+                    <button type="submit"
+                        class="btn-google btn">
+
+                        <i class="fa fa-google"
+                            aria-hidden="true"></i>Sign in
+                        with Google</button>
+                </div>
+                <div class="log-footer">
+                    <p>By clicking 'Join Us' you agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                            Policy.</a></p>
+                    <p>Already have an account?<a href="#"
+                            data-toggle="modal"
+                            data-target="#modallogin"
+                            data-dismiss="modal">Sign In</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal Join End -->

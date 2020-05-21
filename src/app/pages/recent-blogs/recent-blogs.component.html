@@ -1,0 +1,22 @@
+<div class="our_blog">
+    <h1>FROM THE BLOG<span><a href="#">see other blog posts</a></span></h1>
+    <div class="clearfix"></div>
+    <div class="col-lg-3 col-md-3 col-sm-6"
+        *ngFor='let blogPost of blogPosts;'>
+        <div class="blog-post">
+            <div class="image-blog">
+                <a href="{{blogPost.url}}" target="_blank">
+                    <img src="{{blogPost.image ? blogPost.image :'assets/images/blog_img.jpg'}}"
+                        alt="{{blogPost.title}}"
+                        class="img-responsive" />
+                </a>
+            </div>
+            <div class="blog-content">
+                <a href="{{blogPost.url}}" target="_blank">
+                    <p>{{blogPost.title}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

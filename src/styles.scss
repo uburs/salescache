@@ -1,0 +1,232 @@
+/* You can add global styles to this file, and also import other style files */
+@media (min-width: 1200px){
+    .container {
+        width: 1355px;
+    }
+}
+.pagination-box .pagination>li{
+    display: none;
+}
+.visible{
+    display: inline-block !important;
+}
+.tooltip-a + .tooltip{
+    opacity: 1;
+}
+
+ngb-tooltip-window .arrow{
+    z-index: 9999;
+    width: 10px;
+    height: 10px;
+    position: relative;
+    top: 0;
+    content: "";
+    border: 8px solid transparent;
+    border-bottom-color: #000;
+}
+
+// .owl-stage-outer{
+//     width: 100%;
+// }
+
+.isDisabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+  }
+
+  .banner-slider{
+      width: 100%;
+  }
+
+
+img {
+    max-width: 100%;
+}
+
+// .container {
+//     width: 100% !important;
+// }
+
+ul.rslides {
+    padding: 0;
+}
+.banner-slider .item {
+    clear: both;
+    display: flex;
+    width: 100%;
+
+}
+.image-content {
+    width: 40%;
+    float: left;
+}
+.product-image {
+    text-align: center;
+    float: left;
+    width: 65%;
+    padding: 20px 0;
+}
+.image-content {
+    width: 35%;
+    float: left;
+    text-align: left;
+    padding-left: 25px;
+    position: relative;
+}
+.owl-carousel .owl-item img {
+    display: inline-block;
+}
+.owl-carousel .owl-item img {
+    display: inline-block;
+    min-height: 330px;
+    max-height: 330px;
+    height: 100%;
+}.banner-slider .hdr_img {
+    max-height: 100%!important;
+    height: 100%!important;
+}
+.banner-slider {
+    max-height: 100%!important;
+    height: 100%!important;
+}
+.item h2.title {
+    font-size: 43px;
+    line-height: 55px;
+}
+h3.discription {
+    font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.image-content span {
+    margin-right: 20%;
+    display: block;
+}
+a.btn-view {
+    padding: 6px 25px;
+    font-size: 16px;
+    border: 1px solid #a60e8a;
+    display: inline-block;
+    transition: .4s all;
+}
+a.btn-view:hover {
+    background: #a60e8a;
+    color: #ffffff !important;
+}
+// .image-content:before {
+//     content: "";
+//     position: absolute;
+//     height: 50%;
+//     width: 10%;
+//     background: #E72049;
+//     right: -5%;
+//     top: 0;
+// }
+// .image-content:after {
+//     content: "";
+//     position: absolute;
+//     height: 50%;
+//     width: 10%;
+//     background: #A60D8B;
+//     right: -5%;
+//     bottom: 0;
+// }
+.blog-post {
+    position: relative;
+}
+.blog-content {
+    position: absolute;
+    bottom: 0;
+    height: 55px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .6);
+    padding: 5px 10px;
+    display: flex;
+    right: 0;
+    left: 0;
+}
+.blog-content a{
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+}
+.blog-content a:hover {
+    color: #ffffff;
+}
+.blog-content a p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    height: 35px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 0;
+}
+.image-blog {
+    height: 120px;
+}
+.image-blog img {
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .item h2.title {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    h3.discription {
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .image-content span {
+        margin-right: 0;
+    }
+    .owl-carousel .owl-item img {
+        min-height: 320px;
+        max-height: 320px;
+    }
+    .logo2 img {
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 480px) {
+.banner-slider .item {
+    clear: both;
+    display: block;
+    width: 100%;
+    float: left;
+}
+.image-content {
+    width: 100%;
+    margin-top: 25px;
+    padding-bottom: 35px;
+}
+.product-image {
+    text-align: center;
+    float: left;
+    width: 100%;
+    padding: 20px 0;
+}
+.owl-carousel .owl-item img {
+    min-height: 210px;
+    max-height: 210px;
+}
+// .image-content:before {
+//     height: 15%;
+//     width: 50%;
+//     left: 0;
+//     bottom: 0;
+//     top: auto;
+// }
+// .image-content:after {
+//     height: 15%;
+//     width: 50%;
+//     right: 0;
+//     bottom: 0;
+// }
+}

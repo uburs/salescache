@@ -1,0 +1,19 @@
+<h3>CURRENT OFFERS</h3>
+<div class="curnt_box1" *ngFor="let offer of offers;let i = index">
+
+  <a *ngIf="(offer.Client.Img || offer.ImgPath) else currentOfferAtagTemplate;"
+    href="{{offersURL + 'Offers/Index?id='+ offer.OfferId + '&name=' + encodeURIComponent(offer.Name)}}">
+    <img src="{{offer.Client.Img}}" alt="{{offer.Client.ClientName}}" (error)='fnSetAlternateImg(offer)' />
+  </a>
+  <ng-template #currentOfferAtagTemplate>
+    <a href="{{offersURL + 'Offers/Index?id='+ offer.OfferId + '&name=' + encodeURIComponent(offer.Name)}}">
+      <!-- <img src="/image/DefaultProductImage-optimised.jpg"
+                  alt="{{offer.Client.ClientName}}" /> -->
+      <h2>{{offer.Client.ClientName}}</h2>
+    </a>
+  </ng-template>
+  <a href="{{offersURL + 'Offers/Index?id='+ offer.OfferId + '&name=' + encodeURIComponent(offer.Name)}}">
+    <span class="m_link">{{offer.Client.ClientName}}</span>
+    {{offer.Name}}
+  </a>
+</div>

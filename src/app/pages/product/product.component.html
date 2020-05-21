@@ -1,0 +1,152 @@
+
+<div class="tab-inner">
+        <h4>
+            Everyday, we select top sales from across the web and present them here. 
+            There are new sales everyday</h4>
+        <div *ngFor='let product of products; let Index = index;'>
+            
+            <!-- <ng-template [ngIf]='Index == BlockIndex'>
+                <app-recent-blogs [blogPosts]='blogPosts'></app-recent-blogs>
+            </ng-template> -->
+            <div class="home_box">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="pro_homeimg">
+                            <a  href="javascript:void(0);"
+                                (click)='fnGoToProductDetailspage(product)'
+                                *ngIf='!product.showDefaultImg'>
+                                <img *ngIf="(product.Product.ExtProductImagePath); else defaultProductImage"
+                                    alt="{{product.Product.ProductName}}"
+                                    src="{{product.Product.ExtProductImagePath.replace(product.Product.ProductImages,product.Product.ProductThumbnails)}}"
+                                    class="img-responsive"
+                                    (error)='fnSetAlternateImg(product)'>
+                                <ng-template #defaultProductImage>
+                                    <img src="/assets/images/DefaultProductImage-optimised.jpg"
+                                        alt="{{product.Product.ProductName}}"
+                                        class="img-responsive"
+                                        (error)='fnSetAlternateImg(product)'>
+                                </ng-template>
+                            </a>
+                            <a href="javascript:void(0);"
+                                (click)='fnGoToProductDetailspage(product)'
+                                *ngIf='product.showDefaultImg'>
+                                <img alt="{{product.Product.ProductName}}"
+                                    class="img-responsive"
+                                    src="/assets/images/s2.jpg" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="lip_col">
+                            <a target="_blank"
+                                href="{{product.Product.ExtProductRef}}">
+                                <h2>{{product.Product.ProductName}}</h2>
+                            </a>
+                            <div class="lip_price"
+                                *ngIf="(product.SaleId && product.Sale.CurrentPrice > 0); else lip_PriceNoSale">
+                                {{ product.Sale.CurrentPrice | currency:currencyIcon }}
+                                <span>
+                                    <del>{{ product.Product.Price | currency:currencyIcon }}
+                                    </del></span>
+                                <font>{{(product.Sale.Discount ) | percent}} OFF</font>
+                            </div>
+                            <ng-template #lip_PriceNoSale>
+                                <div class="lip_price">
+                                    <span>
+                                        {{ product.Sale.Price | currency:currencyIcon }}
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <p *ngIf="(product.Product.Description && (product.Product.Description + '').length > 500); else completeProductDescription"
+                                class="m_text">
+                                {{(product.Product.Description  | slice:0:(product.Product.Description  | slice:0:500).lastIndexOf(' '))}}
+                                ...
+                                <a href="javascript:void(0);"
+                                (click)='fnGoToProductDetailspage(product)'>Read More</a>
+                            </p>
+                            <ng-template #completeProductDescription>
+                                <p>
+                                    {{product.Product.Description}}</p>
+                            </ng-template>
+                        </div>
+                        <div class="get_btn">
+                            <a href="{{product.Product.ExtProductRef}}">GET IT</a>
+                        </div>
+                        <span *ngIf="(product.Client && product.Client.ClientName); else NoClientExternalClientRef">
+                            <a target="_blank"
+                                rel="noopener"
+                                href="{{product.Client.ExternalClientRef}}"> at
+                                {{product.Client.ClientName}}</a>
+                        </span>
+                        <ng-template #NoClientExternalClientRef>
+                            <a target="_blank"
+                                rel="noopener"
+                                href="{{product.Client.ExternalClientRef}}"> at
+                                {{product.Client.ExternalClientRef}}</a>
+                        </ng-template>
+                
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="date_post">
+
+                                {{((product.Product.DateModified | date: dateFormat) > (product.DateCreated | date: dateFormat)) ? 'Updated' : 'Posted:'}}
+
+                                {{
+                                    (
+                                    ((((product.Product.DateModified | date: dateFormat) > (product.DateCreated | date: dateFormat)) ? (product.Product.DateModified) : (product.DateCreated)) | date:dateFormat)
+                                    == (previousDate | date: dateFormat)) 
+                                    ? 'Yesterday' : 
+                                    
+                                    ((((((product.Product.DateModified | date: dateFormat) > (product.DateCreated | date: dateFormat)) ? (product.Product.DateModified) : (product.DateCreated)) | date:dateFormat)
+                                    == (currentDate | date: dateFormat)) 
+                                    ? 'Today' : 
+                                    ((((product.Product.DateModified | date: dateFormat) > (product.DateCreated | date: dateFormat)) ? (product.Product.DateModified) : (product.DateCreated)) | date:dateFormat))
+
+                                }}
+                                
+                            </div>
+                    </div>
+                    <div class="col-lg-8 col-dm-8 col-sm-8 rtl-social">
+                        <ul>
+                            <li>
+                                <a href="https://www.addtoany.com/share">
+                                    <i class="fa fa-share-alt"
+                                        aria-hidden="true"></i> SHARE
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                    class='tooltip-a isDisabled'
+                                    placement="bottom"
+                                    ngbTooltip="{{commingUpToolTipText}}"
+                                    (click)='commonFunctions.redirectToUpcommingPage()'>
+                                    <i class="fa fa-comment"
+                                        aria-hidden="true"></i>COMMENTS
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                    class="tooltip-a isDisabled"
+                                    placement="bottom"
+                                    ngbTooltip="{{commingUpToolTipText}}"
+                                    (click)='commonFunctions.redirectToUpcommingPage()'>
+                                    <i class="fa fa-money"
+                                        aria-hidden="true"></i> SAVE DEAL
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+        </div>
+
+        <div class="pagging"
+            *ngIf='products && products.length > 0'>
+            <ngb-pagination [page]="1"
+                [maxSize]="5"
+                [collectionSize]="collectionSize"
+                (pageChange)='fnShowPage($event)'></ngb-pagination>
+        </div>
+    </div>
+
+

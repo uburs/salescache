@@ -1,0 +1,190 @@
+﻿
+/* PREFIXED CSS */
+.metro,
+.metro div,
+.metro li,
+.metro div::after,
+.metro .carat,
+.metro .carat:after,
+.metro .selected::after,
+.metro:after{
+	-webkit-transition: all 150ms ease-in-out;
+	-moz-transition: all 150ms ease-in-out;
+	-ms-transition: all 150ms ease-in-out;
+	transition: all 150ms ease-in-out;
+}
+.metro .selected::after,
+.metro.scrollable div::after{
+	-webkit-pointer-events: none;
+	-moz-pointer-events: none;
+	-ms-pointer-events: none;
+	pointer-events: none;
+}
+
+/* WRAPPER */
+.metro{
+	position: relative;
+	/*--width: 250px;--*/
+	cursor: pointer;
+	margin-bottom:0px;
+	font-weight: 200;
+	background:none;
+	
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+.metro.open{
+	z-index: 2;
+}
+.metro:hover{
+	background: #f4f4f4;
+}
+.metro:after{
+	content: '';
+	position: absolute;
+	right: 3px;
+	bottom: 3px;
+	top: 2px;
+	width: 30px;
+	background: transparent;
+}
+.metro.focus:after{
+	background:url(../../image/minus.gif);
+	width: 13px;
+	height: 13px;
+	right: 10px;
+	top: 50%;
+	margin-top: -4px;
+}
+/* CARAT */
+.metro .carat,
+.metro .carat:after{
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	margin-top: -4px;
+	background: url(../../image/plus.gif);
+	width: 13px;
+	height: 13px;
+	-webkit-transform-origin: 50% 20%;
+	-moz-transform-origin: 50% 20%;
+	-ms-transform-origin: 50% 20%;
+	transform-origin: 50% 20%;
+	/*--content: '';
+	border: 8px solid transparent;
+	border-top: 8px solid #000;--*/
+}
+/* OLD SELECT (HIDDEN) */
+.metro .old{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 0;
+	width: 0;
+	overflow: hidden;
+}
+.metro select{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.metro.touch select{
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+/* SELECTED FEEDBACK ITEM */ 
+.metro .selected,
+.metro li{
+	display: block;
+	font-size:13px;
+	line-height: 1;
+	color: #777;
+	padding: 9px 12px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.metro .selected::after{
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 60px;
+}
+.metro:hover .selected::after{
+	box-shadow: inset -55px 0 25px -20px #f4f4f4;
+	-webkit-box-shadow: inset -55px 0 25px -20px #f4f4f4;
+	-moz-box-shadow: inset -55px 0 25px -20px #f4f4f4;
+	-o-box-shadow: inset -55px 0 25px -20px #f4f4f4;
+}
+/* DROP DOWN WRAPPER */
+.metro div{
+	position: absolute;
+	height: 0;
+	left: 0;
+	right: 0;
+	top: 100%;
+	margin-top: -1px;
+	background: #f8f8f8;
+	overflow: hidden;
+	opacity: 0;
+}
+.metro:hover div{
+	background: #f4f4f4;
+}
+/* Height is adjusted by JS on open */
+.metro.open div{
+	opacity: 1;
+	z-index: 2;
+}
+/* FADE OVERLAY FOR SCROLLING LISTS */
+.metro.scrollable div::after{
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 50px;
+	box-shadow: inset 0 -50px 30px -35px #f8f8f8;
+}
+.metro.scrollable:hover div::after{
+	box-shadow: inset 0 -50px 30px -35px #f4f4f4;
+}
+.metro.scrollable.bottom div::after{
+	opacity: 0;
+}
+
+/* DROP DOWN LIST */
+.metro ul{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	list-style: none;
+	overflow: hidden;
+}
+.metro.scrollable.open ul{
+	overflow-y: auto;
+}
+/* DROP DOWN LIST ITEMS */
+.metro li{
+	list-style: none;
+	padding: 8px 12px;
+}
+/* .focus class is also added on hover */
+.metro li.focus{
+	/*--background: #0180d1;--*/
+	position: relative;
+	z-index: 3;
+	color: #fff;
+	background:#4CB1CA;
+}
+/*--.metro li.active{
+	background:#4CB1CA;
+	color: #fff;
+}--*/

@@ -1,0 +1,95 @@
+﻿
+.contact-form {
+    /*background: #ccc 0px 0px fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    -moz-background-size: cover;*/
+    margin:auto;
+    padding:6em 15em;
+    width:80%;
+    text-align:center;
+    background-color:#fff;
+   
+}
+.contact-form h2 {
+    margin-bottom: 0.1em;
+    font-size: 4em;
+    color: #4cb1ca;
+    text-align: center;
+}
+.contact-form p {
+    margin-bottom: 4em;
+    font-size: 1.1em;
+    color: #777;
+    line-height: 1.8em;
+}
+.contact-form form {
+    text-align: center;
+   
+}
+.contact-form textarea {
+    resize: none;
+    padding: .6em .8em;
+    min-height: 12em;
+    overflow:auto;
+}
+.contact-form input[type="text"], textarea {
+    width: 80%;
+    color: #777;
+    background: none;
+    outline: none;
+    font-size: 1em;
+    padding: .8em 1em;
+    margin: .5em 0;
+    border: solid 1px #777;
+    -webkit-appearance: none;
+    display: inline-block;
+    font-family:inherit;
+}
+.contact-form textarea::-webkit-input-placeholder, input[type="text"]::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+color:    #777;
+}
+.contact-form textarea::-moz-placeholder, input[type="text"]:-moz-placeholder { /* Mozilla Firefox */
+    color:    #777;
+}
+.contact-form textarea:-ms-input-placeholder, input[type="text"]:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #777;
+}
+.contact-form input[type="submit"] {
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 0.8em 6em;
+    font-size: 1.1em;
+    margin:auto;
+   
+    -webkit-appearance: none;
+    background: #4cb1ca;
+    transition: 0.5s all;
+    border: 2px solid #4cb1ca;
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all;
+    -moz-transition: 0.5s all;
+}
+.contact-form input[type="submit"]:hover {
+    background: none;
+    color: #4cb1ca;
+}
+.contact-form .alert-success {color: #3c763d;background-color: #f2dede;border-color: #ebccd1;border-radius:4px;padding:15px;}
+.contact-form .alert-danger {color: #a94442;background-color: #f2dede;border-color: #ebccd1;border-radius:4px;padding:15px;}
+@media (max-width:800px){
+    .contact-form {
+        padding: 3em 2em 10em;
+        margin:auto;
+    width:80%;
+    text-align:center;
+    background-color:#fff;
+    }
+    .contact-form h2 {
+        font-size:2em;
+    }
+    .contact-form p {
+        font-size:0.9em;
+    }
+       
+        }
